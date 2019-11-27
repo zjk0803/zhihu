@@ -13,6 +13,7 @@ BOT_NAME = 'zhihu'
 
 SPIDER_MODULES = ['zhihu.spiders']
 NEWSPIDER_MODULE = 'zhihu.spiders'
+HTTPERROR_ALLOWED_CODES = [400]
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

@@ -6,6 +6,9 @@
 # http://doc.scrapy.org/en/latest/topics/items.html
 from scrapy import Item,Field
 import scrapy
+rules =  (
+
+)
 class zhihuItem(Item):
 
     zhihu_id = Field()
@@ -23,10 +26,10 @@ class InformationItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     zhihu_id = Field()
-    name = scrapy.Field()
-    place = scrapy.Field()#居住地
-    work = scrapy.Field()#所在行业
-    brief_introduction = scrapy.Field()  #个人介绍
+    name = Field()
+    place = Field()#居住地
+    work = Field()#所在行业
+    brief_introduction = Field()  #个人介绍
     brief_success = Field()
 
 class RelationshipsItem(Item):
