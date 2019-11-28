@@ -17,7 +17,7 @@ import sys
 
 class ZhihuSpiderSpider(scrapy.Spider):
     name = "zhihu_spider"
-    allowed_domains = ["www.zhihu.com/people"]
+    allowed_domains = ["zhihu.com"]
     start_urls = ['https://www.zhihu.com/people/xia-si-gou/activities']
 
     def start_requests(self,response):
@@ -45,7 +45,7 @@ class ZhihuSpiderSpider(scrapy.Spider):
         info_item['name'] = selector.xpath('//span[@class="ProfileHeader-name"]/text()').extract()
         yield info_item
         #print(name)'''
-#1pritn
+
 
 
 
