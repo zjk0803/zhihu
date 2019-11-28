@@ -31,15 +31,16 @@ class InformationItem(Item):
     work = Field()#所在行业
     brief_introduction = Field()  #个人介绍
     brief_success = Field()
+    fans_num = Field()
 
 class RelationshipsItem(Item):
     """ 用户关系 """
-    zhihu_id = Field()
-    fan_id = Field()
-    followed_id = Field()
-    follow_topic = Field()
+    #zhihu_id = Field()
+    fan_name = Field()
+    #followed_name = Field()
+    '''follow_topic = Field()
     follow_column = Field()
     follow_question = Field()
-    follow_favorites = Field()
+    follow_favorites = Field()'''
 
     pass
