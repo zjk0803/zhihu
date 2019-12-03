@@ -25,13 +25,13 @@ class zhihuItem(Item):
 class InformationItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    zhihu_id = Field()
+    #zhihu_id = Field()
     name = Field()
     place = Field()#居住地
     work = Field()#所在行业
     brief_introduction = Field()  #个人介绍
-    brief_success = Field()
-    fans_num = Field()
+    #brief_success = Field()
+    #fans_num = Field()
 
 class RelationshipsItem(Item):
     """ 用户关系 """

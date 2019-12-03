@@ -32,17 +32,26 @@ class ZhihuSpiderSpider(scrapy.Spider):
     start_urls = ['https://www.zhihu.com/people/xia-si-gou/activities']
     #login_url = 'https://www.zhihu.com/api/v3/oauth/sign_in'
     #captcha_url = 'https://www.zhihu.com/api/v3/oauth/captcha?lang=en'
-    follow_url = ['https://www.zhihu.com/people/xia-si-gou/following?page=1']
+    #follow_url = ['https://www.zhihu.com/people/xia-si-gou/following?page=1']
     def parse(self, response):
-        # 他关注的人数
+        item = InformationItem()
+        selector = Selector()
+        infos = selector.xpath('//div[@class="Card"]')
+        for info in infos():
+            try:
+                name = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract()[0].strip()
+                place = info.xpath('div[@class = "ProfileHeader-detailValue"]/span/text()').extract()[0].strip()
+                work = info.xpath('div[@class = "ProfileHeader-detailItem"]/div[@class = "ProfileHeader-detailValue"]/text()').extract()[0].strip()
+                brief_introduction = info.xpath('div[@class = "ztext ProfileHeader-detailValue"]/text()').extract()[0].strip()
+                #brief_success = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract().strip()
+                #fans_num = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract().strip()  # 专栏
+                item['name'] = name
+                item['place'] = place
+                item['work'] = work
+                item['brief_introduction'] = brief_introduction
+                yield item
+            except IndexError:
+                pass
+        url = ['https://www.zhihu.com/people/xia-si-gou/activities']
+        yield  Request(url,callback=self.parse)
 
-        fan_i = response.xpath('//div/a[@class="List-item"]')
-        for i in fan_i:
-            info = RelationshipsItem()
-            info["follow_num"] = response.xpath("./a[@class='UserLink-link']/text()").extract()
-        # 粉丝数
-        #info["fans_num"] = response.xpath("//strong[@class='NumberBoard-itemValue']/text()").extract()[1]
-            print("他关注的人数为：%s" % info["follow_num"])
-            #print("他粉丝的人数为：%s" % info["fans_num"])
-
-            yield info
