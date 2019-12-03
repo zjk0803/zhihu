@@ -35,14 +35,14 @@ class ZhihuSpiderSpider(scrapy.Spider):
     #follow_url = ['https://www.zhihu.com/people/xia-si-gou/following?page=1']
     def parse(self, response):
         item = InformationItem()
-        selector = Selector()
-        infos = selector.xpath('//div[@class="Card"]')
+        selector = Selector(response)
+        infos = selector.xpath('//div[@id="ProfileHeader"]')
         for info in infos():
             try:
-                name = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract()[0].strip()
-                place = info.xpath('div[@class = "ProfileHeader-detailValue"]/span/text()').extract()[0].strip()
-                work = info.xpath('div[@class = "ProfileHeader-detailItem"]/div[@class = "ProfileHeader-detailValue"]/text()').extract()[0].strip()
-                brief_introduction = info.xpath('div[@class = "ztext ProfileHeader-detailValue"]/text()').extract()[0].strip()
+                name = info.xpath('//span[@class = "ProfileHeader-name"]/text()').extract()[0].strip()
+                place = info.xpath('//div[@class = "ProfileHeader-detailValue"]/span/text()').extract()[0].strip()
+                work = info.xpath('//div[@class = "ProfileHeader-detailItem"]/div[@class = "ProfileHeader-detailValue"]/text()').extract()[0].strip()
+                brief_introduction = info.xpath('//div[@class = "ztext ProfileHeader-detailValue"]/text()').extract()[0].strip()
                 #brief_success = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract().strip()
                 #fans_num = info.xpath('span[@class = "ProfileHeader-name"]/text()').extract().strip()  # 专栏
                 item['name'] = name

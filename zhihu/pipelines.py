@@ -7,15 +7,15 @@
 import json
 import pymysql
 class ZhihuPipeline(object):
-    def __init__(self):
-        self.file = open("tencent.json", "ab")
+    #def __init__(self):
+     #   self.file = open("tencent.json", "ab")
 
     def process_item(self, item, spider):
-        content = json.dumps(dict(item), ensure_ascii=False) + "\n"
-        self.file.write(content)
+        #content = json.dumps(dict(item), ensure_ascii=False) + "\n"
+        #self.file.write(content)
         return item
 
-    class CnblogJsonPipeline(object):
+    '''  class CnblogJsonPipeline(object):
         def __init__(self):
             self.file = open("cnblogs.json", 'w')
 
@@ -35,4 +35,5 @@ class ZhihuPipeline(object):
             return item
 
     def close_spider(self, spider):
-        self.file.close()
+    self.file.close()
+        '''

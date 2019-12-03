@@ -32,6 +32,7 @@ class InformationItem(Item):
     brief_introduction = Field()  #个人介绍
     #brief_success = Field()
     #fans_num = Field()
+    pass
 
 class RelationshipsItem(Item):
     """ 用户关系 """
