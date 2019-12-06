@@ -35,8 +35,8 @@ class ZhihuSpiderSpider(scrapy.Spider):
     #follow_url = ['https://www.zhihu.com/people/xia-si-gou/following?page=1']
     def parse(self, response):
         item = InformationItem()
-        selector = Selector(response)
-        infos = selector.xpath('//div[@id="ProfileHeader"]/div')
+        #selector = Selector(response)
+        infos = response.xpath('//div[@id="ProfileHeader"]/div')
         for info in infos():
             try:
                 name = info.xpath('//span[@class = "ProfileHeader-name"]/text()').extract()[0].strip()
