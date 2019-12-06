@@ -5,14 +5,21 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import json
-import pymysql
+import pymongo
 class ZhihuPipeline(object):
-    #def __init__(self):
-     #   self.file = open("tencent.json", "ab")
+    def __init__(self):
+        client = pymongo.MongoClient('localhost',27017)
+        test = client['test']
+        zhihu = test['zhihu']
+        self.post = zhihu
+
 
     def process_item(self, item, spider):
         #content = json.dumps(dict(item), ensure_ascii=False) + "\n"
         #self.file.write(content)
+        info = dict(item)
+        self.post.insert(info)
+
         return item
 
     '''  class CnblogJsonPipeline(object):

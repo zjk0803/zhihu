@@ -36,7 +36,7 @@ class ZhihuSpiderSpider(scrapy.Spider):
     def parse(self, response):
         item = InformationItem()
         selector = Selector(response)
-        infos = selector.xpath('//div[@id="ProfileHeader"]')
+        infos = selector.xpath('//div[@id="ProfileHeader"]/div')
         for info in infos():
             try:
                 name = info.xpath('//span[@class = "ProfileHeader-name"]/text()').extract()[0].strip()
